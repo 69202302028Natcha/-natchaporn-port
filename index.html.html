@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio | ณัชพร ปัตตะการ (ตอง)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        accent: {
+                            50: '#fff1f2',
+                            500: '#f43f5e',
+                            600: '#e11d48'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+            .shadow-xl, .shadow-lg, .shadow-md { box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 w-full glass-card border-b border-slate-200/80 dark:border-slate-800/80 transition-all no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Logo -->
+                <a href="#hero" class="flex items-center gap-2 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-400 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                        N
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-slate-800 dark:text-white">
+                        Natchaporn<span class="text-brand-600 dark:text-brand-500">.Portfolio</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
+                    <a href="#about" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">เกี่ยวกับฉัน</a>
+                    <a href="#education" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">การศึกษา & ครอบครัว</a>
+                    <a href="#skills" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">ทักษะ & งานอดิเรก</a>
+                    <a href="#activities" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">ผลงาน/กิจกรรม</a>
+                    <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">ติดต่อ</a>
+                </nav>
+
+                <!-- Actions / Controls -->
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleDarkMode()" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i id="theme-icon" class="fas fa-moon text-base"></i>
+                    </button>
+                    <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-brand-700 bg-brand-50 dark:bg-brand-900/30 dark:text-brand-300 rounded-xl hover:bg-brand-100 dark:hover:bg-brand-900/50 transition-colors">
+                        <i class="fas fa-print"></i>
+                        <span>พิมพ์ Portfolio</span>
+                    </button>
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-1 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">เกี่ยวกับฉัน</a>
+            <a href="#education" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">การศึกษา & ครอบครัว</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">ทักษะ & งานอดิเรก</a>
+            <a href="#activities" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">ผลงาน/กิจกรรม</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">ติดต่อ</a>
+            <button onclick="window.print()" class="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-brand-600 rounded-xl">
+                <i class="fas fa-print"></i> พิมพ์ / ดาวน์โหลด PDF
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative pt-4 pb-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Left Details -->
+                <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-100 text-brand-800 dark:bg-brand-900/60 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        Academic Portfolio & Student Profile
+                    </div>
+
+                    <div class="space-y-2">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                            นางสาวณัชพร ปัตตะการ
+                        </h1>
+                        <p class="text-xl font-medium text-brand-600 dark:text-brand-400">
+                            ชื่อเล่น: ตอง (Tong)
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+                        นักเรียนชั้นมัธยมศึกษาตอนปลาย แผนการเรียน <span class="font-semibold text-slate-900 dark:text-white">วิทยาศาสตร์-คณิตศาสตร์</span> จากโรงเรียนแกดำวิทยาคาร มุ่งมั่นพัฒนาความรู้ มีทักษะความเป็นผู้นำ การรับมือกับสถานการณ์ฉุกเฉิน และความสามารถทางด้านกีฬา
+                    </p>
+
+                    <!-- Quick Tag Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="p-3 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 shadow-sm">
+                            <span class="text-xs text-slate-400 block">อายุ</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200">18 ปี</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 shadow-sm">
+                            <span class="text-xs text-slate-400 block">แผนการเรียน</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200 truncate block">วิทย์-คณิต</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 shadow-sm col-span-2 sm:col-span-1">
+                            <span class="text-xs text-slate-400 block">สถาบัน</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200 truncate block">รร.แกดำวิทยาคาร</span>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 pt-4 no-print">
+                        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-lg shadow-brand-600/25 transition-all transform hover:-translate-y-0.5">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>ติดต่อฉัน</span>
+                        </a>
+                        <a href="#activities" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium border border-slate-200 dark:border-slate-700 shadow-sm transition-all">
+                            <i class="fas fa-award"></i>
+                            <span>ดูผลงาน & กิจกรรม</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Profile Avatar / Card -->
+                <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Background Glow Decorative elements -->
+                        <div class="absolute -top-4 -left-4 w-72 h-72 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-teal-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <div class="relative bg-white dark:bg-slate-800 rounded-3xl p-4 shadow-xl border border-slate-200/80 dark:border-slate-700/80 text-center">
+                            <!-- Image Frame / Placeholder -->
+                            <div class="relative rounded-2xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center group">
+                                <img id="profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="นางสาวณัชพร ปัตตะการ" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/600x800/0f766e/ffffff?text=Natchaporn+P.';" />
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
+                                <div class="absolute bottom-4 left-4 right-4 text-left text-white">
+                                    <p class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Student Profile</p>
+                                    <h3 class="text-lg font-bold">ณัชพร ปัตตะการ (ตอง)</h3>
+                                    <p class="text-xs text-slate-200">โรงเรียนแกดำวิทยาคาร</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex items-center justify-between px-2 text-xs text-slate-500 dark:text-slate-400">
+                                <span><i class="fas fa-map-marker-alt text-rose-500 mr-1"></i> จ.มหาสารคาม</span>
+                                <span><i class="fas fa-graduation-cap text-brand-500 mr-1"></i> วิทย์-คณิต</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERSONAL & FAMILY INFORMATION -->
+        <section id="about" class="space-y-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400">
+                    <i class="fas fa-user-circle text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ข้อมูลส่วนตัว & ประวัติครอบครัว</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Personal Background & Family Details</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Personal Info Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-slate-700">
+                        <i class="fas fa-id-card text-brand-500"></i>
+                        <span>ข้อมูลส่วนตัว (Personal Details)</span>
+                    </h3>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">ชื่อ-นามสกุล:</span>
+                            <span class="font-medium text-slate-800 dark:text-slate-200">นางสาวณัชพร ปัตตะการ</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">ชื่อเล่น:</span>
+                            <span class="font-medium text-slate-800 dark:text-slate-200">ตอง</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">วัน/เดือน/ปี เกิด:</span>
+                            <span class="font-medium text-slate-800 dark:text-slate-200">11 กุมภาพันธ์ พ.ศ. 2550</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">อายุ:</span>
+                            <span class="font-medium text-slate-800 dark:text-slate-200">18 ปี</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">สัญชาติ / เชื้อชาติ:</span>
+                            <span class="font-medium text-slate-800 dark:text-slate-200">ไทย / ไทย</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">ศาสนา:</span>
+                            <span class="font-medium text-slate-800 dark:text-slate-200">พุทธ</span>
+                        </div>
+                        <div class="pt-2">
+                            <span class="text-slate-500 dark:text-slate-400 block mb-1">ที่อยู่ตามภูมิลำเนา:</span>
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 font-medium leading-relaxed">
+                                <i class="fas fa-home text-brand-500 mr-2"></i>
+                                บ้านเลขที่ 81 หมู่ 8 บ้านหนองบัว ต.วังแสง อ.แกดำ จ.มหาสารคาม
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Info Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-slate-700">
+                        <i class="fas fa-users text-brand-500"></i>
+                        <span>ประวัติครอบครัว (Family Background)</span>
+                    </h3>
+
+                    <div class="space-y-4">
+                        <!-- Father -->
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 dark:text-white text-base">บิดา: นายสุเมธ ปัตตะการ</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">ข้อมูลบิดา</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm pt-2 border-t border-slate-200/60 dark:border-slate-800">
+                                <div><span class="text-slate-400">อายุ:</span> <span class="font-medium text-slate-700 dark:text-slate-300">46 ปี</span></div>
+                                <div><span class="text-slate-400">อาชีพ:</span> <span class="font-medium text-slate-700 dark:text-slate-300">รับจ้าง</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Mother -->
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-400 flex items-center justify-center font-bold">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 dark:text-white text-base">มารดา: นางสาวธิดา พันพา</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">ข้อมูลมารดา</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm pt-2 border-t border-slate-200/60 dark:border-slate-800">
+                                <div><span class="text-slate-400">อายุ:</span> <span class="font-medium text-slate-700 dark:text-slate-300">46 ปี</span></div>
+                                <div><span class="text-slate-400">อาชีพ:</span> <span class="font-medium text-slate-700 dark:text-slate-300">รับจ้าง</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACADEMIC HISTORY SECTION -->
+        <section id="education" class="space-y-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400">
+                    <i class="fas fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ประวัติการศึกษา</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Educational History & Academic Track</p>
+                </div>
+            </div>
+
+            <div class="relative border-l-2 border-brand-200 dark:border-brand-900/80 ml-4 pl-6 space-y-8">
+                <!-- Current School -->
+                <div class="relative group">
+                    <!-- Timeline Dot -->
+                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-brand-100 dark:ring-brand-900/50"></div>
+                    
+                    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-3">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-800 dark:text-brand-300">
+                                กำลังศึกษาอยู่
+                            </span>
+                            <span class="text-xs font-medium text-slate-400">ระดับมัธยมศึกษาตอนปลาย</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">โรงเรียนแกดำวิทยาคาร</h3>
+                        <p class="text-sm font-medium text-brand-600 dark:text-brand-400 flex items-center gap-2">
+                            <i class="fas fa-atom"></i>
+                            <span>แผนการเรียน: วิทยาศาสตร์ - คณิตศาสตร์ (Science - Mathematics)</span>
+                        </p>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            เน้นการศึกษากระบวนการทางวิทยาศาสตร์ ตรรกศาสตร์ คณิตศาสตร์ การคิดวิเคราะห์อย่างเป็นระบบ และการฝึกปฏิบัติทักษะในห้องทดลองเพื่อเตรียมความพร้อมเข้าสู่ระดับอุดมศึกษา
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS & HOBBIES SECTION -->
+        <section id="skills" class="space-y-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400">
+                    <i class="fas fa-star text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ความสามารถพิเศษ & งานอดิเรก</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Special Talents, Strengths & Personal Hobbies</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Special Talents -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-700">
+                        <i class="fas fa-bolt text-amber-500"></i>
+                        <span>ความสามารถพิเศษ (Special Abilities)</span>
+                    </h3>
+
+                    <div class="space-y-3">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 flex items-start gap-3">
+                            <div class="p-2.5 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 mt-0.5">
+                                <i class="fas fa-trophy text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-200">เล่นกีฬาเปตอง</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">มีสมาธิ การวางแผนการเล่น การฝึกซ้อมเป็นทีม และการทำงานร่วมกับผู้อื่นอย่างมีประสิทธิภาพ</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 flex items-start gap-3">
+                            <div class="p-2.5 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 mt-0.5">
+                                <i class="fas fa-users-cog text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-200">มีความเป็นผู้นำ (Leadership)</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">สามารถประสานงาน กลุ่มงานกิจกรรมนักเรียน กล้าคิด กล้าตัดสินใจ และรับฟังความคิดเห็นของผู้อื่น</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 flex items-start gap-3">
+                            <div class="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 mt-0.5">
+                                <i class="fas fa-first-aid text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-200">การรับมือกับสถานการณ์ฉุกเฉิน</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">มีความใจเย็น มีสติ พร้อมแก้ปัญหาเฉพาะหน้า และปฐมพยาบาลเบื้องต้นเมื่อเกิดเหตุฉุกเฉิน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hobbies -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-700">
+                        <i class="fas fa-heart text-rose-500"></i>
+                        <span>งานอดิเรก (Hobbies & Interests)</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:border-brand-300 transition-colors">
+                            <div class="w-12 h-12 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
+                            <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">ทำขนม</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">ฝึกความประณีต สัดส่วน และความคิดสร้างสรรค์</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:border-brand-300 transition-colors">
+                            <div class="w-12 h-12 mx-auto rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">ดูหนัง ฟังเพลง</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">ผ่อนคลายความเครียด และเปิดรับมุมมองใหม่ๆ</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:border-brand-300 transition-colors">
+                            <div class="w-12 h-12 mx-auto rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">อ่านหนังสือ ติวสอบ</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">ทบทวนความรู้สม่ำเสมอ เตรียมความพร้อมสอบ</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote Box -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-r from-brand-500/10 to-teal-500/10 border border-brand-200/50 dark:border-brand-800/50 text-slate-700 dark:text-slate-300 text-xs sm:text-sm italic">
+                        <i class="fas fa-quote-left text-brand-500 mr-2"></i>
+                        "ความมุ่งมั่นและสติในการรับมือทุกปัญหา คือกุญแจสำคัญสู่ความสำเร็จ"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO / ACTIVITIES SHOWCASE SECTION -->
+        <section id="activities" class="space-y-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400">
+                        <i class="fas fa-images text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">กิจกรรม & ผลงาน</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Activities, Sports & Leadership Experience</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Showcase Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Activity 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517649763962-0c623266200b?auto=format&fit=crop&w=800&q=80" alt="การแข่งขันกีฬาเปตอง" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <span class="absolute top-3 right-3 px-2.5 py-1 text-xs font-medium rounded-full bg-black/60 text-white backdrop-blur-sm">
+                            กีฬาเปตอง
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-brand-600 transition-colors">
+                            การเข้าร่วมแข่งขันและซ้อมกีฬาเปตอง
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            เข้าร่วมการฝึกซ้อมและการแข่งขันกีฬาเปตอง ฝึกทักษะการคำนวณทิศทาง นำทีม และสร้างสมาธิในการแข่งขันระดับโรงเรียน
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Activity 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="กิจกรรมผู้นำนักเรียน" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <span class="absolute top-3 right-3 px-2.5 py-1 text-xs font-medium rounded-full bg-black/60 text-white backdrop-blur-sm">
+                            ความเป็นผู้นำ
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-brand-600 transition-colors">
+                            กิจกรรมส่งเสริมความเป็นผู้นำในโรงเรียน
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            มีบทบาทในการร่วมจัดกิจกรรมของโรงเรียนแกดำวิทยาคาร ช่วยเหลือครูอาจารย์และเพื่อนนักเรียนในการดำเนินงานกิจกรรมต่างๆ
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Activity 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="ทบทวนบทเรียนอ่านหนังสือ" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <span class="absolute top-3 right-3 px-2.5 py-1 text-xs font-medium rounded-full bg-black/60 text-white backdrop-blur-sm">
+                            วิชาการ
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-brand-600 transition-colors">
+                            กิจกรรมติวสอบ & ทบทวนบทเรียนวิทย์-คณิต
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            จัดเวลาในการอ่านหนังสือ ติวสอบกลุ่มกับเพื่อนร่วมชั้นเรียน เพื่อเตรียมตัวสมัครเข้าศึกษาต่อในระดับมหาวิทยาลัย
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="space-y-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400">
+                    <i class="fas fa-address-book text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">ช่องทางการติดต่อ</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Contact Channels & Social Media Profiles</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Phone -->
+                <a href="tel:0903188911" class="p-5 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">เบอร์โทรศัพท์</span>
+                        <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">0903188911</span>
+                    </div>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:natchapornpattakarn@gmail.com" class="p-5 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">อีเมล</span>
+                        <span class="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-sm truncate block">natchapornpattakarn@gmail.com</span>
+                    </div>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="p-5 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">Facebook</span>
+                        <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">ณัชพร ฯ</span>
+                    </div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="p-5 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">Instagram</span>
+                        <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">_NATCHA.07</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Copy Toast Notification -->
+            <div id="toast" class="fixed bottom-5 right-5 hidden items-center gap-2 px-4 py-3 bg-slate-900 text-white text-xs sm:text-sm rounded-2xl shadow-xl z-50 transition-opacity">
+                <i class="fas fa-check-circle text-emerald-400"></i>
+                <span id="toast-message">คัดลอกข้อมูลเรียบร้อยแล้ว</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 no-print">
+        <div class="max-w-6xl mx-auto px-4 space-y-2">
+            <p>© 2026 Academic Portfolio - นางสาวณัชพร ปัตตะการ (ตอง) | โรงเรียนแกดำวิทยาคาร</p>
+            <p class="text-slate-400 dark:text-slate-500">Minimal Modern Portfolio Designed with Tailwind CSS & Hosted on GitHub Pages</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle Logic
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.className = 'fas fa-moon text-base';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.className = 'fas fa-sun text-base text-amber-400';
+            }
+        }
+
+        // Initialize Theme from localStorage
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon').className = 'fas fa-sun text-base text-amber-400';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('theme-icon').className = 'fas fa-moon text-base';
+        }
+
+        // Mobile Menu Toggle Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Toast notification helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
